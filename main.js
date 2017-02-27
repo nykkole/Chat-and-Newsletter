@@ -4,7 +4,22 @@ function populateDates(e){
     $('#chatTuesdays').html('');
     $('#newsletterDays').html('');
     
-    var chosenYear = $('#year').val();
+    var chosenYear = $('#year').val()
+
+    if ($.isNumeric(chosenYear) != true) {
+        $('#errorMessage').html('This will only work if you enter a number.');
+        console.log(chosenYear.isNumeric);
+    } else {
+        console.log(chosenYear);
+        $('#errorMessage').html('');
+        // -------- loop toDateString get second and fourth Tuesday of a month
+        for (i=0; i<12; i++) {
+                     // Second Tuesday of month i of chosen year.
+        getChatDates(getTuesdays(2, 2, new Date(chosenYear, i)));
+                     // Fourth Tuesday of month i of chosen year.
+        getChatDates(getTuesdays(2, 4, new Date(chosenYear, i)));
+        }
+    }
 
     function getChatDates(s) {
 
@@ -29,14 +44,6 @@ function populateDates(e){
             date.setDate(1 + add);
 
             return date;
-    }
-
-// -------- loop toDateString get second and fourth Tuesday of a month
-    for (i=0; i<12; i++) {
-                 // Second Tuesday of month i of chosen year.
-    getChatDates(getTuesdays(2, 2, new Date(chosenYear, i)));
-                 // Fourth Tuesday of month i of chosen year.
-    getChatDates(getTuesdays(2, 4, new Date(chosenYear, i)));
     }
 };
 

@@ -38,3 +38,8 @@ ul {
 	list-style: none;
 }
 
+#errorMessage {
+    color: red;
+    font-weight: bold;
+    height: 1em;
+}
